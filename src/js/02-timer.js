@@ -10,15 +10,11 @@ let intervalId = null;
 let selectedDate = null;
 let currentDate = null;
 
-flatpickr(selector, options)
-
-
 const startBtn = document.querySelector('[data-start-timer]');
- const dataDays = document.querySelector('[data-days]');
+const dataDays = document.querySelector('[data-days]');
 const dataHours = document.querySelector('[data-hours]');
- const dataMinutes = document.querySelector('[data-minutes]');
+const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
-
 const flatpickrInput = document.querySelector('#datetime-picker');
 
  startBtn.disabled = true;
