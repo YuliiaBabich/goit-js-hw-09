@@ -4,9 +4,9 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
- const startBtn: document.querySelector('button[data-action-start]'),
- const stopBtn: document.querySelector('button[data-action-stop]'),
- const calendar: document.querySelector('#datetime-picker'),
+const startBtn = document.querySelector('button[data-action-start]');
+const stopBtn = document.querySelector('button[data-action-stop]');
+const calendar = document.querySelector('#datetime-picker');
 
 const TIMER_DELAY = 1000;
 let intervalId;
@@ -37,8 +37,7 @@ flatpickr(calendar, {
       Report.success(
         '🥰 Congratulation! Click on start!',
         '"Do not try to become a person of success but try to become a person of value." <br/><br/>- Albert Einstein',
-        'Okay'
-      );
+        'Okay');
       startBtn.disabled = false;
       const setTimer = () => {
         selectedDate = selectedDates[0].getTime();
@@ -108,4 +107,4 @@ const timer = {
   addLeadingZero(value) {
     return String(value).padStart(2, 0);
   },
-};*/
+};
