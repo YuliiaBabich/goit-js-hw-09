@@ -1,121 +1,74 @@
 // Описаний в документації
-import flatpickr from "flatpickr";
+import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
-import "flatpickr/dist/flatpickr.min.css";
+import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
-const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: new Date(),
-  minuteIncrement: 1,
-  onClose(selectedDates) {
-    console.log(selectedDates[0]);
-  },
-};
 /*
-document.body.style.backgroundColor = '#ece5da';
-const TIMER_DELAY = 1000;
-let intervalId = null;
-let selectedDate = null;
-let currentDate = null;
+const refs = {
+  dateTime: document.querySelector('#datetime-picker'),
+  startBtn: document.querySelector('[data-start]'),
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+};
 
-const calendar = document.querySelector('#datetime-picker');
-const startBtn = document.querySelector('[data-start-timer]');
-startBtn.disabled = true;
+refs.startBtn.disabled = true;
 
-Report.info(
-  '👋 Greeting, my Friend!',
-  'Please, choose a date and click on start',
-  'Okay'
-);
+refs.startBtn.addEventListener('click', timerStart);
 
-flatpickr(calendar, {
+flatpickr(refs.dateTime, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    if (selectedDates[0].getTime() < Date.now()) {
-      Report.failure(
-        '🥺 Ooops...',
-        'Please, choose a date in the future and remember: "Knowledge rests not upon truth alone, but upon error also." - Carl Gustav Jung',
-        'Okay'
-      );
+  onClose([selectedDates]) {
+    if (selectedDates.getTime() < Date.now()) {
+      Notiflix.Notify.warning("Please choose a date in the future");
     } else {
-      Report.success(
-        '🥰 Congratulation! Click on start!',
-        '"Do not try to become a person of success but try to become a person of value." <br/><br/>- Albert Einstein',
-        'Okay'
-      );
-      startBtn.disabled = false;
-      const setTimer = () => {
-        selectedDate = selectedDates[0].getTime();
-        timer.start();
-      };
-
-      startBtn.addEventListener('click', setTimer);
+      refs.startBtn.disabled = false;
+      selectedDate = selectedDates.getTime();
     }
   },
 });
 
-const timer = {
-  rootSelector: document.querySelector('.timer'),
-  start() {
-    intervalId = setInterval(() => {
-      startBtn.disabled = true;
-      calendar.disabled = true;
-      currentDate = Date.now();
-      const delta = selectedDate - currentDate;
+let selectedDate;
+const TIMER_DELAY = 1000;
+let intervalId;
 
-      if (delta <= 0) {
-        this.stop();
-        Report.info(
-          '👏 Congratulation! Timer stopped!',
-          'Please, if you want to start timer, choose a date and click on start or reload this page',
-          'Okay'
-        );
-        return;
-      }
-      const { days, hours, minutes, seconds } = this.convertMs(delta);
-      this.rootSelector.querySelector('[data-days]').textContent =
-        this.addLeadingZero(days);
-      this.rootSelector.querySelector('[data-hours]').textContent =
-        this.addLeadingZero(hours);
-      this.rootSelector.querySelector('[data-minutes]').textContent =
-        this.addLeadingZero(minutes);
-      this.rootSelector.querySelector('[data-seconds]').textContent =
-        this.addLeadingZero(seconds);
-    }, TIMER_DELAY);
-  },
+function timerStart() {
+  intervalId = setInterval(() => {
+    const currentDate = Date.now();
+    const diff = selectedDate - currentDate;
+    if (diff <= 0) {
+      refs.startBtn.disabled = true;
+      refs.dateTime.disabled = false;
+      clearInterval(intervalId);
+      return;
+    } else {
+      refs.startBtn.disabled = true;
+      refs.dateTime.disabled = true;
+      convertMs(diff);
+    }
+  }, TIMER_DELAY);
+}
 
-  stop() {
-    clearInterval(intervalId);
-    this.intervalId = null;
-    startBtn.disabled = true;
-    calendar.disabled = false;
-  },
+function createMarkup({ days, hours, minutes, seconds }) {
+  refs.days.textContent = addLeadingZero(days);
+  refs.hours.textContent = addLeadingZero(hours);
+  refs.minutes.textContent = addLeadingZero(minutes);
+  refs.seconds.textContent = addLeadingZero(seconds);
+}
 
-  convertMs(ms) {
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
+function convertMs(time) {
+  const days = Math.floor(time / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  createMarkup({ days, hours, minutes, seconds });
+}
 
-    const days = this.addLeadingZero(Math.floor(ms / day));
-    const hours = this.addLeadingZero(Math.floor((ms % day) / hour));
-    const minutes = this.addLeadingZero(
-      Math.floor(((ms % day) % hour) / minute)
-    );
-    const seconds = this.addLeadingZero(
-      Math.floor((((ms % day) % hour) % minute) / second)
-    );
-
-    return { days, hours, minutes, seconds };
-  },
-
-  addLeadingZero(value) {
-    return String(value).padStart(2, 0);
-  },
-};
-*/
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
+}*/
