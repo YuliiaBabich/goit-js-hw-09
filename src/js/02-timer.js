@@ -4,11 +4,6 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
-/*
-const currentDate = Data.now();
-console.log(currentDate);
-
-
 const refs = {
   dateTime: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('[data-start]'),
@@ -75,4 +70,4 @@ function convertMs(time) {
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
-}*/
+}
