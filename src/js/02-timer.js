@@ -2,10 +2,12 @@
 import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from "notiflix";
 
 const refs = {
   dateTime: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('[data-action-start]'),
+  stopBtn: document.querySelector('[data-action-stop]'),
   days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
   minutes: document.querySelector('[data-minutes]'),
@@ -13,7 +15,6 @@ const refs = {
 };
 
 refs.startBtn.disabled = true;
-
 refs.startBtn.addEventListener('click', timerStart);
 
 flatpickr(refs.dateTime, {
@@ -58,13 +59,21 @@ function createMarkup({ days, hours, minutes, seconds }) {
   refs.minutes.textContent = addLeadingZero(minutes);
   refs.seconds.textContent = addLeadingZero(seconds);
 }
-
-function convertMs(time) {
-  const days = Math.floor(time / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((time % (1000 * 60)) / 1000);
-  createMarkup({ days, hours, minutes, seconds });
+function convertMs(ms) {
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+  // Remaining days
+  const days = Math.floor(ms / day);
+  // Remaining hours
+  const hours = Math.floor((ms % day) / hour);
+  // Remaining minutes
+  const minutes = Math.floor(((ms % day) % hour) / minute);
+  // Remaining seconds
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  return { days, hours, minutes, seconds };
 }
 
 function addLeadingZero(value) {
