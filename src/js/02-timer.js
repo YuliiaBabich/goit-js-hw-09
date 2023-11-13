@@ -2,7 +2,6 @@
 import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
 import 'flatpickr/dist/flatpickr.min.css';
-import Notiflix from 'notiflix';
 
 const refs = {
   dateTime: document.querySelector('#datetime-picker'),
