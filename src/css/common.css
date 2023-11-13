@@ -164,7 +164,7 @@ label span {
 }
 
 /*----------*/
-button {
+.button-imput {
   display: inline-block;
   width: 48px;
   height: 48px;
@@ -177,21 +177,21 @@ button {
   transform: all 300ms linear;
 }
 
-button[data-start],
-button[data-stop] {
+.button-imput {
   margin-right: 20px;
 }
 
-button[disabled] {
+
+.button-imput[disabled] {
   color: #a09686;
   animation: none;
 }
 
-[data-start] {
+.button-imput[data-start] {
   animation: waves 2s ease-in-out infinite;
 }
 
-[data-start-timer] {
+.button-imput[data-start-timer] {
   background-color: transparent;
   animation: waves 2s ease-in-out infinite;
 }
@@ -212,7 +212,7 @@ button[disabled] {
   }
 }
 
-button:active {
+.button-imput:active {
   position: relative;
   top: 3px;
 }
