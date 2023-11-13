@@ -5,6 +5,10 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 /*
+const currentDate = Data.now();
+console.log(currentDate);
+
+
 const refs = {
   dateTime: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('[data-start]'),
