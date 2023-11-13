@@ -181,17 +181,13 @@ label span {
   margin-right: 20px;
 }
 
-
 .button-imput[disabled] {
   color: #a09686;
   animation: none;
 }
 
-.button-imput[data-start] {
-  animation: waves 2s ease-in-out infinite;
-}
-
-.button-imput[data-start-timer] {
+.button-imput[data-action-start],
+.button-imput[data-action-stop] {
   background-color: transparent;
   animation: waves 2s ease-in-out infinite;
 }
