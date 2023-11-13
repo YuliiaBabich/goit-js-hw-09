@@ -186,6 +186,9 @@ label span {
   animation: none;
 }
 
+.button-imput[data-action-start] {
+  animation: none;
+}
 
 .button-imput[data-action-stop] {
   background-color: transparent;
