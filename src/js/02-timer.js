@@ -10,7 +10,7 @@ const refs = {
   calendar: document.querySelector('#datetime-picker'),
 };
 
-class Clockface {
+class Calendar {
   initTime;
   intervalId;
   isActive = false;
@@ -38,18 +38,18 @@ class Clockface {
   }
 }
 
-const clockface = new Clockface(render);
+const calendar = new Ccalendar(render);
 
 refs.startBtn.addEventListener('click', () => {
-  clockface.start();
+  calendar.start();
 });
 
 refs.stopBtn.addEventListener('click', () => {
-  clockface.stop();
+  calendar.stop();
 });
 
 function render(time) {
-  refs.clockface.textContent = time;
+  refs.calendar.textContent = time;
 }
 
 function convertMsToTime(milliseconds) {
